@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1416194838183.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2AE94477",
+    "lastKnownWriteTime" : 7863398671532949505,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "SelectData",
+        "contentUrl" : "content?title=SelectData&file=ae55f091d5cd4235bbc8b267d0b35c5f.htm",
+        "displayedObservations" : "1000",
+        "displayedVariables" : 100,
+        "totalObservations" : "37653",
+        "variables" : "11"
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

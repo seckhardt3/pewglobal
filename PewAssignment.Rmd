@@ -1,0 +1,35 @@
+---
+title: "Pew Assignment"
+author: "Sam Eckhardt and Joey Miranda"
+date: "Sunday, November 16, 2014"
+output: html_document
+---
+```{r}
+library(dplyr)
+library(rCharts)
+library(reshape2)
+library(scales)
+```
+
+```{r}
+SelectData<-mydata%>%
+  select(4,6:11,100:760)%>%
+  select(1:7,87,100:660)%>%
+  select(1:8,200:569)%>%
+  select(1:8,31,32,100:378)%>%
+  select(1,3:10,96,97)
+
+
+rPlot(x="Q1",y="count(Q1)",data=SelectData,type="bar")
+rPlot(x="Q4",y="count(Q4)",data=SelectData,type="bar")
+rPlot(x="Q5",y="count(Q5)",data=SelectData,type="bar")
+rPlot(x="Q6",y="count(Q6)",data=SelectData,type="bar")
+rPlot(x="Q7",y="count(Q7)",data=SelectData,type="bar")
+rPlot(x="Q8",y="count(Q8)",data=SelectData,type="bar")
+rPlot(x="Q47US",y="count(Q47US)",data=SelectData,type="bar")
+rPlot(x="Q164",y="count(Q164)",data=SelectData,type="bar")
+rPlot(x="PARTY",y="count(PARTY)",data=SelectData,type="bar")
+rPlot(x="PARTYLN",y="count(PARTYLN)",data=SelectData,type="bar")
+
+  
+  
