@@ -4,12 +4,25 @@ author: "Sam Eckhardt and Joey Miranda"
 date: "Sunday, November 16, 2014"
 output: html_document
 ---
+```{r setoptions, echo=FALSE}
+library(knitr)
+options(width=60, show.signif.stars=FALSE)
+opts_chunk$set(echo=TRUE,
+               results="asis",
+               warning=FALSE,
+               message=FALSE,
+               fig.width=10,
+               fig.height=8,
+               tidy=TRUE,
+               fig.align='center')
+```
+
 ```{r}
 library(dplyr)
 library(rCharts)
 library(reshape2)
 library(scales)
-load("~/SCHOOL/Senior Fall/MKTG 489/pewglobal/mydata.Rda")
+load("mydata.rda")
 ```
 
 ```{r}
@@ -19,113 +32,108 @@ SelectData<-mydata%>%
   select(1:9,200:569)%>%
   select(1:9,31,32,100:378)%>%
   select(1,3:11,96,97)
+```
 
-
+```{r}
 p1<-rPlot(x=list(var = "Q1", sort = "count(Q1)"),y="count(Q1)",data=SelectData,type="bar")
 p1$guides(x = list(title = "Response"))
 p1$guides(y = list(title = "Count"))
 p1$addParams(title = "Satisfied with Country?")
-p1
+p1$save('chart1.html',cdn=TRUE)
+```
+<iframe src="chart1.html" width="800" height="600"></iframe>
 
-
+```{r}
 p2<-rPlot(x=list(var = "Q4", sort = "count(Q4)"),y="count(Q4)",data=SelectData,type="bar")
 p2$guides(x = list(title = "Response"))
 p2$guides(y = list(title = "Count"))
 p2$addParams(title = "Describe Current Economic Condition")
-p2
-
-
+p2$save('chart2.html',cdn=TRUE)
+```
+<iframe src="chart2.html" width="800" height="600"></iframe>
+```{r}
 p3<-rPlot(x=list(var = "Q5", sort = "count(Q5)"),y="count(Q5)",data=SelectData,type="bar")
 p3$guides(x = list(title = "Response"))
 p3$guides(y = list(title = "Count"))
 p3$addParams(title = "Expectation of Economy in 1 Year")
-p3
-
-
+p3$save('chart3.html',cdn=TRUE)
+```
+<iframe src="chart3.html" width="800" height="600"></iframe>
+```{r}
 p4<-rPlot(x=list(var = "Q6", sort = "count(Q6)"),y="count(Q6)",data=SelectData,type="bar")
 p4$guides(x = list(title = "Response"))
 p4$guides(y = list(title = "Count"))
 p4$addParams(title = "Personal Economic Condition")
-p4
-
-
+p4$save('chart4.html',cdn=TRUE)
+```
+<iframe src="chart4.html" width="800" height="600"></iframe>
+```{r}
 p5<-rPlot(x=list(var = "Q7", sort = "count(Q7)"),y="count(Q7)",data=SelectData,type="bar")
 p5$guides(x = list(title = "Response"))
 p5$guides(y = list(title = "Count"))
 p5$addParams(title = "Personal Economic Improvement")
-p5
-
+p5$save('chart5.html',cdn=TRUE)
+```
+<iframe src="chart5.html" width="800" height="600"></iframe>
+```{r}
 
 p6<-rPlot(x=list(var = "Q8", sort = "count(Q8)"),y="count(Q8)",data=SelectData,type="bar")
 p6$guides(x = list(title = "Response"))
 p6$guides(y = list(title = "Count"))
 p6$addParams(title = "Will Your Children be Better or Worse Off?")
-p6
-
+p6$save('chart6.html',cdn=TRUE)
+```
+<iframe src="chart6.html" width="800" height="600"></iframe>
+```{r}
 
 p7<-rPlot(x=list(var = "Q47US", sort = "count(Q47US)"),y="count(Q47US)",data=SelectData,type="bar")
 p7$guides(x = list(title = "Response"))
 p7$guides(y = list(title = "Count"))
 p7$addParams(title = "US Thoughts on US Consideration of Other Nations")
-p7
-
+p7$save('chart7.html',cdn=TRUE)
+```
+<iframe src="chart7.html" width="800" height="600"></iframe>
+```{r}
 
 p8<-rPlot(x=list(var = "Q164", sort = "count(Q164)"),y="count(Q164)",data=SelectData,type="bar",color="Q164")
 p8$guides(x = list(title = "Response"))
 p8$guides(y = list(title = "Count"))
 p8$addParams(title = "Gender")
-p8
-
-
+p8$save('chart8.html',cdn=TRUE)
+```
+<iframe src="chart8.html" width="800" height="600"></iframe>
+```{r}
 p9<-rPlot(x="bin(Q165,10)",y="count(bin(Q165,10))",data=SelectData, type="bar")
 p9$guides(x = list(title = "Response"))
 p9$guides(y = list(title = "Count"))
 p9$addParams(title = "Age Group")
-p9
-
-
+p9$save('chart9.html',cdn=TRUE)
+```
+<iframe src="chart9.html" width="800" height="600"></iframe>
+```{r}
 p10<-rPlot(x=list(var = "PARTY", sort = "count(PARTY)"),y="count(PARTY)",data=SelectData,type="bar",color="PARTY")
 p10$guides(x = list(title = "Response"))
 p10$guides(y = list(title = "Count"))
 p10$addParams(title = "Party Affiliation")
-p10
-
-
+p10$save('chart10.html',cdn=TRUE)
+```
+<iframe src="chart10.html" width="800" height="600"></iframe>
+```{r}
 p11<-rPlot(x=list(var = "PARTYLN", sort = "count(PARTYLN)"),y="count(PARTYLN)",data=SelectData,type="bar",color="PARTYLN")
 p11$guides(x = list(title = "Response"))
 p11$guides(y = list(title = "Count"))
 p11$addParams(title = "Independant Party Lean")
-p11
-
+p11$save('chart11.html',cdn=TRUE)
+```
+<iframe src="chart11.html" width="800" height="600"></iframe>
+```{r}
 p12<-rPlot(x=list(var = "Q47", sort = "count(Q47)"),y="count(Q47)",data=SelectData,type="bar")
 p12$guides(x = list(title = "Response"))
 p12$guides(y = list(title = "Count"))
 p12$addParams(title = "Other Nations thoughts on US Consideration of Other Nations")
-p12
-
-p1$print("chart1")
-p2$print("chart2")
-p3$print("chart3")
-p4$print("chart4")
-p5$print("chart5")
-p6$print("chart6")
-p7$print("chart7")
-p8$print("chart8")
-p9$print("chart9")
-p10$print("chart10")
-p11$print("chart11")
-p12$print("chart12")
+p12$save('chart12.html',cdn=TRUE)
 
 ```
-<iframe src="p1rChart.html" width="800" height="600"></iframe>
-<iframe src="p2rChart.html" width="800" height="600"></iframe>
-<iframe src="p3rChart.html" width="800" height="600"></iframe>
-<iframe src="p4rChart.html" width="800" height="600"></iframe>
-<iframe src="p5rChart.html" width="800" height="600"></iframe>
-<iframe src="p6rChart.html" width="800" height="600"></iframe>
-<iframe src="p7rChart.html" width="800" height="600"></iframe>
-<iframe src="p8rChart.html" width="800" height="600"></iframe>
-<iframe src="p9rChart.html" width="800" height="600"></iframe>
-<iframe src="p10rChart.html" width="800" height="600"></iframe>
-<iframe src="p11rChart.html" width="800" height="600"></iframe>
-<iframe src="p12rChart.html" width="800" height="600"></iframe>
+<iframe src="chart12.html" width="800" height="600"></iframe>
+
+
