@@ -58,6 +58,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
+<div id="pew-global-data" class="section level2">
+<h2>Pew Global Data</h2>
+<p>This webpage will show some visualizations from the PEW Global census data from several different countries. This survey was conducted in the spring of 2013. Many of the questions we were looking at were about how the citizens of each country feel about certain aspects of their society. Lets take a look.</p>
 <pre class="r"><code>library(dplyr)
 library(rCharts)
 library(reshape2)
@@ -66,15 +69,18 @@ load(&quot;mydata.rda&quot;)</code></pre>
 <pre class="r"><code>SelectData &lt;- mydata %&gt;% select(4, 6:11, 100:760) %&gt;% select(1:7, 
     86, 87, 100:660) %&gt;% select(1:9, 200:569) %&gt;% select(1:9, 
     31, 32, 100:378) %&gt;% select(1, 3:11, 96, 97)</code></pre>
+</div>
+<div id="national-views" class="section level1">
+<h1>National Views</h1>
+<p>Our first plot shows the satisfaction of the people polled with their own nation. Very clearly, people are not satisfied with how their country is doing overall.</p>
 <pre class="r"><code>p1 &lt;- rPlot(x = list(var = &quot;Q1&quot;, sort = &quot;count(Q1)&quot;), y = &quot;count(Q1)&quot;, 
     data = SelectData, type = &quot;bar&quot;)
 p1$guides(x = list(title = &quot;Response&quot;))
 p1$guides(y = list(title = &quot;Count&quot;))
-p1$addParams(title = &quot;Satisfied with Country?&quot;)
+p1$addParams(title = &quot;Satisfied with your Country?&quot;)
 p1$save(&quot;chart1.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart1.html" width="800" height="600"></iframe>
-
-
+<p>Our next graph is people describing the overall condition of the economy. As you can see, while people towards the middle are fairly evenly split, there is a much larger portion of people polled that feel their economy is very bad.</p>
 <pre class="r"><code>p2 &lt;- rPlot(x = list(var = &quot;Q4&quot;, sort = &quot;count(Q4)&quot;), y = &quot;count(Q4)&quot;, 
     data = SelectData, type = &quot;bar&quot;)
 p2$guides(x = list(title = &quot;Response&quot;))
@@ -83,6 +89,7 @@ p2$addParams(title = &quot;Describe Current Economic Condition&quot;)
 p2$save(&quot;chart2.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart2.html" width="800" height="600"></iframe>
 
+<p>Overall, people seem to be more positive on the future outlook of their country, which is a good sign for a country. Positive outlook in the consumer markets leads to more purchases by those consumers.</p>
 <pre class="r"><code>p3 &lt;- rPlot(x = list(var = &quot;Q5&quot;, sort = &quot;count(Q5)&quot;), y = &quot;count(Q5)&quot;, 
     data = SelectData, type = &quot;bar&quot;)
 p3$guides(x = list(title = &quot;Response&quot;))
@@ -90,7 +97,10 @@ p3$guides(y = list(title = &quot;Count&quot;))
 p3$addParams(title = &quot;Expectation of Economy in 1 Year&quot;)
 p3$save(&quot;chart3.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart3.html" width="800" height="600"></iframe>
-
+</div>
+<div id="personal-income" class="section level1">
+<h1>Personal Income</h1>
+<p>Our next few graphs show how people think that their current personal economic condition is. Overall, people think their current economic condition is somewhat good, a much more positive result than their views on the national level.</p>
 <pre class="r"><code>p4 &lt;- rPlot(x = list(var = &quot;Q6&quot;, sort = &quot;count(Q6)&quot;), y = &quot;count(Q6)&quot;, 
     data = SelectData, type = &quot;bar&quot;)
 p4$guides(x = list(title = &quot;Response&quot;))
@@ -98,7 +108,7 @@ p4$guides(y = list(title = &quot;Count&quot;))
 p4$addParams(title = &quot;Personal Economic Condition&quot;)
 p4$save(&quot;chart4.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart4.html" width="800" height="600"></iframe>
-
+<p>For how people think their current economic condition will be in the next year, we have a very positive result all the way around. very few feel that they will worsen, while most say they will remain the same, or improve.</p>
 <pre class="r"><code>p5 &lt;- rPlot(x = list(var = &quot;Q7&quot;, sort = &quot;count(Q7)&quot;), y = &quot;count(Q7)&quot;, 
     data = SelectData, type = &quot;bar&quot;)
 p5$guides(x = list(title = &quot;Response&quot;))
@@ -107,6 +117,7 @@ p5$addParams(title = &quot;Personal Economic Improvement&quot;)
 p5$save(&quot;chart5.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart5.html" width="800" height="600"></iframe>
 
+<p>The next graph asks how people think their children will be in comparison to them. While more believe that their children will be better off, many do believe their children will be worse off then they will be. Historically, almost all generations of children end up better than their parents, so for many to believe that their children will be worse off is a very negative reaction to the current economic and social climate.</p>
 <pre class="r"><code>p6 &lt;- rPlot(x = list(var = &quot;Q8&quot;, sort = &quot;count(Q8)&quot;), y = &quot;count(Q8)&quot;, 
     data = SelectData, type = &quot;bar&quot;)
 p6$guides(x = list(title = &quot;Response&quot;))
@@ -114,7 +125,10 @@ p6$guides(y = list(title = &quot;Count&quot;))
 p6$addParams(title = &quot;Will Your Children be Better or Worse Off?&quot;)
 p6$save(&quot;chart6.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart6.html" width="800" height="600"></iframe>
-
+</div>
+<div id="american-consideration" class="section level1">
+<h1>American Consideration</h1>
+<p>The next few graphs show what the polled people think about how the United States considers other nations. The first graph shows waht the United States pollees think about their gonvernment and the consideration of other nations.</p>
 <pre class="r"><code>p7 &lt;- rPlot(x = list(var = &quot;Q47US&quot;, sort = &quot;count(Q47US)&quot;), y = &quot;count(Q47US)&quot;, 
     data = SelectData, type = &quot;bar&quot;)
 p7$guides(x = list(title = &quot;Response&quot;))
@@ -122,7 +136,17 @@ p7$guides(y = list(title = &quot;Count&quot;))
 p7$addParams(title = &quot;US Thoughts on US Consideration of Other Nations&quot;)
 p7$save(&quot;chart7.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart7.html" width="800" height="600"></iframe>
+<p>This next graph shows what other nations think on the same subject.</p>
+<pre class="r"><code>p12 &lt;- rPlot(x = list(var = &quot;Q47&quot;, sort = &quot;count(Q47)&quot;), y = &quot;count(Q47)&quot;, 
+    data = SelectData, type = &quot;bar&quot;)
+p12$guides(x = list(title = &quot;Response&quot;))
+p12$guides(y = list(title = &quot;Count&quot;))
+p12$addParams(title = &quot;Other Nations thoughts on US Consideration of Other Nations&quot;)
+p12$save(&quot;chart12.html&quot;, cdn = TRUE)</code></pre>
+<iframe src="chart12.html" width="800" height="600"></iframe>
 
+<p>As you can see, in comparison to what the U.S. believes, other nations do not think that the government of the United States takes into consideration the thoughts of other nations very much.This shows a similar bias for the people of the United States as how people believed their personal economic situation was better than the nations. The U.S. pollees believe their government does take other nations into consideration, because they are a part of America and feel that they would. This is like how many believe their situation economically is above average. In comparison, other nations do not feel the same way about U.S. consideration, just like people believe their country is not well off. #Gender and Age Group</p>
+<p>Just a few simple graphs showing the demographics of the polled.</p>
 <pre class="r"><code>p8 &lt;- rPlot(x = list(var = &quot;Q164&quot;, sort = &quot;count(Q164)&quot;), y = &quot;count(Q164)&quot;, 
     data = SelectData, type = &quot;bar&quot;, color = &quot;Q164&quot;)
 p8$guides(x = list(title = &quot;Response&quot;))
@@ -130,6 +154,7 @@ p8$guides(y = list(title = &quot;Count&quot;))
 p8$addParams(title = &quot;Gender&quot;)
 p8$save(&quot;chart8.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart8.html" width="800" height="600"></iframe>
+
 
 <pre class="r"><code>p9 &lt;- rPlot(x = &quot;bin(Q165,10)&quot;, y = &quot;count(bin(Q165,10))&quot;, data = SelectData, 
     type = &quot;bar&quot;)
@@ -139,6 +164,10 @@ p9$addParams(title = &quot;Age Group&quot;)
 p9$save(&quot;chart9.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart9.html" width="800" height="600"></iframe>
 
+</div>
+<div id="party" class="section level1">
+<h1>Party</h1>
+<p>The next two graphs show the party affiliation of those polled. The first graph is total party, the second graph is the independants lean. For the independants, it is interesting to see that they lean to the current party in the White House. It would be interesting to see if that holds up historically.</p>
 <pre class="r"><code>p10 &lt;- rPlot(x = list(var = &quot;PARTY&quot;, sort = &quot;count(PARTY)&quot;), 
     y = &quot;count(PARTY)&quot;, data = SelectData, type = &quot;bar&quot;, color = &quot;PARTY&quot;)
 p10$guides(x = list(title = &quot;Response&quot;))
@@ -146,6 +175,7 @@ p10$guides(y = list(title = &quot;Count&quot;))
 p10$addParams(title = &quot;Party Affiliation&quot;)
 p10$save(&quot;chart10.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart10.html" width="800" height="600"></iframe>
+
 
 <pre class="r"><code>p11 &lt;- rPlot(x = list(var = &quot;PARTYLN&quot;, sort = &quot;count(PARTYLN)&quot;), 
     y = &quot;count(PARTYLN)&quot;, data = SelectData, type = &quot;bar&quot;, color = &quot;PARTYLN&quot;)
@@ -155,13 +185,11 @@ p11$addParams(title = &quot;Independant Party Lean&quot;)
 p11$save(&quot;chart11.html&quot;, cdn = TRUE)</code></pre>
 <iframe src="chart11.html" width="800" height="600"></iframe>
 
-<pre class="r"><code>p12 &lt;- rPlot(x = list(var = &quot;Q47&quot;, sort = &quot;count(Q47)&quot;), y = &quot;count(Q47)&quot;, 
-    data = SelectData, type = &quot;bar&quot;)
-p12$guides(x = list(title = &quot;Response&quot;))
-p12$guides(y = list(title = &quot;Count&quot;))
-p12$addParams(title = &quot;Other Nations thoughts on US Consideration of Other Nations&quot;)
-p12$save(&quot;chart12.html&quot;, cdn = TRUE)</code></pre>
-<iframe src="chart12.html" width="800" height="600"></iframe>
+
+
+
+
+</div>
 
 
 </div>

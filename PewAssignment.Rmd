@@ -4,6 +4,8 @@ author: "Sam Eckhardt and Joey Miranda"
 date: "Sunday, November 16, 2014"
 output: html_document
 ---
+
+
 ```{r setoptions, echo=FALSE}
 library(knitr)
 options(width=60, show.signif.stars=FALSE)
@@ -16,7 +18,9 @@ opts_chunk$set(echo=TRUE,
                tidy=TRUE,
                fig.align='center')
 ```
+##Pew Global Data
 
+This webpage will show some visualizations from the PEW Global census data from several different countries. This survey was conducted in the spring of 2013. Many of the questions we were looking at were about how the citizens of each country feel about certain aspects of their society. Lets take a look. 
 ```{r}
 library(dplyr)
 library(rCharts)
@@ -33,16 +37,18 @@ SelectData<-mydata%>%
   select(1:9,31,32,100:378)%>%
   select(1,3:11,96,97)
 ```
+#National Views
 
+Our first plot shows the satisfaction of the people polled with their own nation. Very clearly, people are not satisfied with how their country is doing overall. 
 ```{r}
 p1<-rPlot(x=list(var = "Q1", sort = "count(Q1)"),y="count(Q1)",data=SelectData,type="bar")
 p1$guides(x = list(title = "Response"))
 p1$guides(y = list(title = "Count"))
-p1$addParams(title = "Satisfied with Country?")
+p1$addParams(title = "Satisfied with your Country?")
 p1$save('chart1.html',cdn=TRUE)
 ```
 <iframe src="chart1.html" width="800" height="600"></iframe>
-
+Our next graph is people describing the overall condition of the economy. As you can see, while people towards the middle are fairly evenly split, there is a much larger portion of people polled that feel their economy is very bad. 
 ```{r}
 p2<-rPlot(x=list(var = "Q4", sort = "count(Q4)"),y="count(Q4)",data=SelectData,type="bar")
 p2$guides(x = list(title = "Response"))
@@ -51,6 +57,8 @@ p2$addParams(title = "Describe Current Economic Condition")
 p2$save('chart2.html',cdn=TRUE)
 ```
 <iframe src="chart2.html" width="800" height="600"></iframe>
+
+Overall, people seem to be more positive on the future outlook of their country, which is a good sign for a country. Positive outlook in the consumer markets leads to more purchases by those consumers.  
 ```{r}
 p3<-rPlot(x=list(var = "Q5", sort = "count(Q5)"),y="count(Q5)",data=SelectData,type="bar")
 p3$guides(x = list(title = "Response"))
@@ -59,6 +67,8 @@ p3$addParams(title = "Expectation of Economy in 1 Year")
 p3$save('chart3.html',cdn=TRUE)
 ```
 <iframe src="chart3.html" width="800" height="600"></iframe>
+#Personal Income 
+Our next few graphs show how people think that their current personal economic condition is. Overall, people think their current economic condition is somewhat good, a much more positive result than their views on the national level. 
 ```{r}
 p4<-rPlot(x=list(var = "Q6", sort = "count(Q6)"),y="count(Q6)",data=SelectData,type="bar")
 p4$guides(x = list(title = "Response"))
@@ -67,6 +77,7 @@ p4$addParams(title = "Personal Economic Condition")
 p4$save('chart4.html',cdn=TRUE)
 ```
 <iframe src="chart4.html" width="800" height="600"></iframe>
+For how people think their current economic condition will be in the next year, we have a very positive result all the way around. very few feel that they will worsen, while most say they will remain the same, or improve. 
 ```{r}
 p5<-rPlot(x=list(var = "Q7", sort = "count(Q7)"),y="count(Q7)",data=SelectData,type="bar")
 p5$guides(x = list(title = "Response"))
@@ -75,6 +86,8 @@ p5$addParams(title = "Personal Economic Improvement")
 p5$save('chart5.html',cdn=TRUE)
 ```
 <iframe src="chart5.html" width="800" height="600"></iframe>
+
+The next graph asks how people think their children will be in comparison to them. While more believe that their children will be better off, many do believe their children will be worse off then they will be. Historically, almost all generations of children end up better than their parents, so for many to believe that their children will be worse off is a very negative reaction to the current economic and social climate. 
 ```{r}
 
 p6<-rPlot(x=list(var = "Q8", sort = "count(Q8)"),y="count(Q8)",data=SelectData,type="bar")
@@ -84,6 +97,9 @@ p6$addParams(title = "Will Your Children be Better or Worse Off?")
 p6$save('chart6.html',cdn=TRUE)
 ```
 <iframe src="chart6.html" width="800" height="600"></iframe>
+#American Consideration
+
+The next few graphs show what the polled people think about how the United States considers other nations. The first graph shows waht the United States pollees think about their gonvernment and the consideration of other nations. 
 ```{r}
 
 p7<-rPlot(x=list(var = "Q47US", sort = "count(Q47US)"),y="count(Q47US)",data=SelectData,type="bar")
@@ -93,39 +109,7 @@ p7$addParams(title = "US Thoughts on US Consideration of Other Nations")
 p7$save('chart7.html',cdn=TRUE)
 ```
 <iframe src="chart7.html" width="800" height="600"></iframe>
-```{r}
-
-p8<-rPlot(x=list(var = "Q164", sort = "count(Q164)"),y="count(Q164)",data=SelectData,type="bar",color="Q164")
-p8$guides(x = list(title = "Response"))
-p8$guides(y = list(title = "Count"))
-p8$addParams(title = "Gender")
-p8$save('chart8.html',cdn=TRUE)
-```
-<iframe src="chart8.html" width="800" height="600"></iframe>
-```{r}
-p9<-rPlot(x="bin(Q165,10)",y="count(bin(Q165,10))",data=SelectData, type="bar")
-p9$guides(x = list(title = "Response"))
-p9$guides(y = list(title = "Count"))
-p9$addParams(title = "Age Group")
-p9$save('chart9.html',cdn=TRUE)
-```
-<iframe src="chart9.html" width="800" height="600"></iframe>
-```{r}
-p10<-rPlot(x=list(var = "PARTY", sort = "count(PARTY)"),y="count(PARTY)",data=SelectData,type="bar",color="PARTY")
-p10$guides(x = list(title = "Response"))
-p10$guides(y = list(title = "Count"))
-p10$addParams(title = "Party Affiliation")
-p10$save('chart10.html',cdn=TRUE)
-```
-<iframe src="chart10.html" width="800" height="600"></iframe>
-```{r}
-p11<-rPlot(x=list(var = "PARTYLN", sort = "count(PARTYLN)"),y="count(PARTYLN)",data=SelectData,type="bar",color="PARTYLN")
-p11$guides(x = list(title = "Response"))
-p11$guides(y = list(title = "Count"))
-p11$addParams(title = "Independant Party Lean")
-p11$save('chart11.html',cdn=TRUE)
-```
-<iframe src="chart11.html" width="800" height="600"></iframe>
+This next graph shows what other nations think on the same subject. 
 ```{r}
 p12<-rPlot(x=list(var = "Q47", sort = "count(Q47)"),y="count(Q47)",data=SelectData,type="bar")
 p12$guides(x = list(title = "Response"))
@@ -135,5 +119,50 @@ p12$save('chart12.html',cdn=TRUE)
 
 ```
 <iframe src="chart12.html" width="800" height="600"></iframe>
+
+As you can see, in comparison to what the U.S. believes, other nations do not think that the government of the United States takes into consideration the thoughts of other nations very much.This shows a similar bias for the people of the United States as how people believed their personal economic situation was better than the nations. The U.S. pollees believe their government does take other nations into consideration, because they are a part of America and feel that they would. This is like how many believe their situation economically is above average. In comparison, other nations do not feel the same way about U.S. consideration, just like people believe their country is not well off. 
+#Gender and Age Group
+
+Just a few simple graphs showing the demographics of the polled. 
+
+```{r}
+
+p8<-rPlot(x=list(var = "Q164", sort = "count(Q164)"),y="count(Q164)",data=SelectData,type="bar",color="Q164")
+p8$guides(x = list(title = "Response"))
+p8$guides(y = list(title = "Count"))
+p8$addParams(title = "Gender")
+p8$save('chart8.html',cdn=TRUE)
+```
+<iframe src="chart8.html" width="800" height="600"></iframe>
+
+```{r}
+p9<-rPlot(x="bin(Q165,10)",y="count(bin(Q165,10))",data=SelectData, type="bar")
+p9$guides(x = list(title = "Response"))
+p9$guides(y = list(title = "Count"))
+p9$addParams(title = "Age Group")
+p9$save('chart9.html',cdn=TRUE)
+```
+<iframe src="chart9.html" width="800" height="600"></iframe>
+
+#Party
+The next two graphs show the party affiliation of those polled. The first graph is total party, the second graph is the independants lean. For the independants, it is interesting to see that they lean to the current party in the White House. It would be interesting to see if that holds up historically. 
+```{r}
+p10<-rPlot(x=list(var = "PARTY", sort = "count(PARTY)"),y="count(PARTY)",data=SelectData,type="bar",color="PARTY")
+p10$guides(x = list(title = "Response"))
+p10$guides(y = list(title = "Count"))
+p10$addParams(title = "Party Affiliation")
+p10$save('chart10.html',cdn=TRUE)
+```
+<iframe src="chart10.html" width="800" height="600"></iframe>
+
+```{r}
+p11<-rPlot(x=list(var = "PARTYLN", sort = "count(PARTYLN)"),y="count(PARTYLN)",data=SelectData,type="bar",color="PARTYLN")
+p11$guides(x = list(title = "Response"))
+p11$guides(y = list(title = "Count"))
+p11$addParams(title = "Independant Party Lean")
+p11$save('chart11.html',cdn=TRUE)
+```
+<iframe src="chart11.html" width="800" height="600"></iframe>
+
 
 
